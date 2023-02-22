@@ -68,15 +68,23 @@ def execute(lock, socket_server, addr_cliente):
             recieve_decrypted_message = lib.encryptCesarASCI.decrypt(recieve_encrypted_message, key)
 
             """ Give the name of Client """
+            # Encrypte the NAME messsage
             encrypted_message = lib.encryptCesarASCI.encrypt(NAME, key)
+            # Send the encrypted message with a key and recieve an encrypted message of Client
             recieve_encrypted_message = lib.socketLibrary.messagesText(socket_server, encrypted_message)
+            # Decrypte the message of Client with a key
             recieve_decrypted_message = lib.encryptCesarASCI.decrypt(recieve_encrypted_message, key)
+            # Update a text to send a Client with his/her name
             client_name = "Hola " +recieve_decrypted_message
 
             """ Hi Client """
+            # Encrypte the messsage to send a Client with his/her name
             encrypted_message = lib.encryptCesarASCI.encrypt(client_name, key)
+             # Send the encrypted message with a key and recieve an encrypted message of Client
             recieve_encrypted_message = lib.socketLibrary.messagesText(socket_server, encrypted_message)
+            # Decrypte the message of Client with a key
             recieve_decrypted_message = lib.encryptCesarASCI.decrypt(recieve_encrypted_message, key)
+            # Print a decrypted message of Client
             print(recieve_decrypted_message)
 
             while not close:
